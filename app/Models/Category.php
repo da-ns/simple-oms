@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class Category
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
 {
     /**
      * The attributes that are mass assignable.
