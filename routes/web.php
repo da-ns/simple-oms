@@ -43,7 +43,7 @@ Route::get('/admin', [AdminController::class, 'panel'])
     ->middleware(['auth', 'verified'])
     ->name('admin.panel');
 
-//Route::resource('admin/products', 'App\\Http\\Controllers\\Admin\ProductController');
+// Products
 
 Route::get('/admin/products', [ProductController::class, 'list'])
     ->middleware(['auth', 'verified'])
@@ -72,3 +72,37 @@ Route::post('/admin/product/{productId}/delete', [ProductController::class, 'del
 Route::get('/admin/product/{productId}', [ProductController::class, 'view'])
     ->middleware(['auth', 'verified'])
     ->name('product.view');
+
+// End products
+
+// Orders
+
+Route::get('/admin/orders', [OrderController::class, 'list'])
+    ->middleware(['auth', 'verified'])
+    ->name('order.list');
+
+Route::get('/admin/order/add', [OrderController::class, 'add'])
+    ->middleware(['auth', 'verified'])
+    ->name('order.add');
+
+Route::post('/admin/order/create', [OrderController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('order.create');
+
+Route::get('/admin/order/{orderId}/edit', [OrderController::class, 'edit'])
+    ->middleware(['auth', 'verified'])
+    ->name('order.edit');
+
+Route::post('/admin/order/{orderId}/update', [OrderController::class, 'update'])
+    ->middleware(['auth', 'verified'])
+    ->name('order.update');
+
+Route::post('/admin/order/{orderId}/delete', [OrderController::class, 'delete'])
+    ->middleware(['auth', 'verified'])
+    ->name('order.delete');
+
+Route::get('/admin/order/{orderId}', [OrderController::class, 'view'])
+    ->middleware(['auth', 'verified'])
+    ->name('order.view');
+
+// End orders

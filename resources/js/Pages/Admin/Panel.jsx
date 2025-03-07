@@ -34,7 +34,7 @@ export default function Panel({}) {
                     </div>
                 </Link>
 
-                <Link href={route("product.list")} className={"text-blue-500 m-4 hover:underline"}>
+                <Link href={route("order.list")} className={"text-blue-500 m-4 hover:underline"}>
                     <div className="flex items-center w-60 p-6 bg-white overflow-hidden shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 1024 1024"
                              fill="#000000" className={"mr-4"} version="1.1">
