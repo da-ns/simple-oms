@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Link, usePage} from '@inertiajs/react';
+import AdminTitle from "@/Components/AdminTitle";
 
 export default function Panel({}) {
     const props = usePage().props;
@@ -8,7 +9,7 @@ export default function Panel({}) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Администрирование</h2>}
+            header={<AdminTitle/>}
         >
 
             <div className={"flex flex-wrap justify-center"}>

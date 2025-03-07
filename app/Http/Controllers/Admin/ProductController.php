@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function list(Request $request)
     {
         $perPage = 25;
-        $products = Product::latest('id')->get();
+        $products = Product::with(['category'])->latest('id')->get();
 
         return Inertia::render('Admin/Product/List', [
             'products' => $products
@@ -28,8 +28,7 @@ class ProductController extends Controller
      */
     public function add(Request $request)
     {
-        $categories = Category::orderBy('id')
-            ->get();
+        $categories = Category::orderBy('id')->get();
 
         return Inertia::render('Admin/Product/Add', [
             'categories' => $categories
@@ -70,7 +69,7 @@ class ProductController extends Controller
      */
     public function view(Request $request)
     {
-        $product = Product::findOrFail($request->productId);
+        $product = Product::with(['category'])->findOrFail($request->productId);
 
         return Inertia::render('Admin/Product/View', [
             'product' => $product
@@ -82,10 +81,12 @@ class ProductController extends Controller
      */
     public function edit(Request $request)
     {
-        $product = Product::findOrFail($request->productId);
+        $product = Product::with(['category'])->findOrFail($request->productId);
+        $categories = Category::orderBy('id')->get();
 
         return Inertia::render('Admin/Product/Edit', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories,
         ]);
     }
 
@@ -108,10 +109,11 @@ class ProductController extends Controller
             'category_id' => 'required',
         ], $messages);
 
-        $lesson->update([
+        $product->update([
             'name' => $request->name,
             'price' => $request->price,
             'category_id' => $request->category_id,
+            'description' => $request->description,
         ]);
 
         return redirect(route('product.view', [
@@ -125,8 +127,7 @@ class ProductController extends Controller
     public function delete(Request $request)
     {
         $product = Product::findOrFail($request->productId);
-        $product->destroy();
-
+        Product::destroy($product->id);
         return redirect(route('product.list', []));
     }
 }

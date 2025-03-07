@@ -2,6 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {usePage} from '@inertiajs/react';
 import Table from "@/Components/Table";
 import AddLink from "@/Components/AddLink";
+import AdminTitle from "@/Components/AdminTitle";
 
 export default function List({ products }) {
     const props = usePage().props;
@@ -10,7 +11,7 @@ export default function List({ products }) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Администрирование</h2>}
+            header={<AdminTitle/>}
         >
 
             <div className={"p-6"}>
@@ -26,7 +27,7 @@ export default function List({ products }) {
                        columns={[
                            { title: "Название", propertyName: "name" },
                            { title: "Цена", propertyName: "price" },
-                           { title: "Категория", propertyName: "category" }
+                           { title: "Категория", propertyName: "category.name" }
                        ]}
                        viewLinkTemplate={route('product.view', {productId: "###"})}
                        editLinkTemplate={route('product.edit', {productId: "###"})}

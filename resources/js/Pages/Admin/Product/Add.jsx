@@ -7,6 +7,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Textarea from "@/Components/Textarea";
 import {useEffect, useState} from "react";
 import Select from "react-tailwindcss-select";
+import AdminTitle from "@/Components/AdminTitle";
 
 export default function Add({categories}) {
 
@@ -43,7 +44,7 @@ export default function Add({categories}) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Администрирование</h2>}
+            header={<AdminTitle/>}
         >
 
             <h3 className="font-semibold text-lg text-gray-800 leading-tight text-center mt-10">Новый товар</h3>

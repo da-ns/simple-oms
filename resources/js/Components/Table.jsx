@@ -1,5 +1,6 @@
 import {Method} from "@inertiajs/inertia";
 import {Link} from "@inertiajs/react";
+import readProperty from "@/Utils/readProperty";
 
 export default function Table({ list, columns, viewLinkTemplate, editLinkTemplate, deleteLinkTemplate }) {
 
@@ -29,7 +30,7 @@ export default function Table({ list, columns, viewLinkTemplate, editLinkTemplat
                                     <td key={j} className="border-b border-slate-100 p-2 text-slate-500 text-left">
                                         <Link className={"text-black hover:underline"}
                                               href={viewLinkTemplate.replace("###", item.id.toString())}>
-                                            {item[column.propertyName]}
+                                            {readProperty(item, column.propertyName)}
                                         </Link>
                                     </td>
                                 )
