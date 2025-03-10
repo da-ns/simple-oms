@@ -25,7 +25,7 @@ export default function Authenticated({ auth, header, children }) {
                                     Dashboard
                                 </NavLink>
                                 <NavLink href={route('admin.panel')} active={route().current('admin.panel')}>
-                                    Admin
+                                    Admin Panel
                                 </NavLink>
                             </div>
                         </div>
@@ -99,7 +99,7 @@ export default function Authenticated({ auth, header, children }) {
                             Dashboard
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('admin.panel')} active={route().current('admin.panel')}>
-                            Admin
+                            Admin Panel
                         </ResponsiveNavLink>
                     </div>
 
