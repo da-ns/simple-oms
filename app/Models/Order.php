@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\OrderStatuses;
 
 class Order extends Model
 {
@@ -25,23 +26,19 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['customer_full_name', 'status', 'customer_comment', 'product_id', 'product_count'];
+    protected $fillable = ['customer_full_name', 'status', 'customer_comment', 'product_id', 'product_count', 'total_sum'];
+
+    protected $casts = [
+        'created_at' => 'datetime:d.m.Y H:m:s',
+    ];
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function getStatusAttribute($value)
     {
-        return [
-            'created_at' => 'datetime',
-            'status' => OrderStatuses::class,
-        ];
+        return OrderStatuses::from($value)->label();
     }
 }

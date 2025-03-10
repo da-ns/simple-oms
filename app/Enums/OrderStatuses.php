@@ -13,8 +13,8 @@ enum OrderStatuses: string
 
     public static function getLabel(self $value): string {
         return match ($value) {
-            OrderStatuses::NEW => 'Новый',
-            OrderStatuses::COMPLETED => 'Выполнен',
+            self::NEW => 'Новый',
+            self::COMPLETED => 'Выполнен',
         };
     }
 }

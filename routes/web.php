@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,13 +90,9 @@ Route::post('/admin/order/create', [OrderController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('order.create');
 
-Route::get('/admin/order/{orderId}/edit', [OrderController::class, 'edit'])
+Route::post('/admin/order/{orderId}/complete', [OrderController::class, 'complete'])
     ->middleware(['auth', 'verified'])
-    ->name('order.edit');
-
-Route::post('/admin/order/{orderId}/update', [OrderController::class, 'update'])
-    ->middleware(['auth', 'verified'])
-    ->name('order.update');
+    ->name('order.complete');
 
 Route::post('/admin/order/{orderId}/delete', [OrderController::class, 'delete'])
     ->middleware(['auth', 'verified'])

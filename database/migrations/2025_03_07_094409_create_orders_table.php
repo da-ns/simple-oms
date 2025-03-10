@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->integer('product_count')->unsigned()->default(0);
+            $table->decimal('total_sum', total: 15, places: 2);
         });
     }
 
